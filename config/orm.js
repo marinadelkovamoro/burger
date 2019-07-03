@@ -9,6 +9,7 @@ var connection = require("../config/connection.js");
 // selectAll()
 // insertOne()
 // updateOne()
+
 function printQuestionMarks(num) {
     var arr = [];
   
@@ -50,14 +51,16 @@ function printQuestionMarks(num) {
         if (err) {
           throw err;
         }
+        // console.log(result);
         callback(result);
       });
     },
+    //[name gender age]
     create: function(table, cols, vals, callback) {
       var queryString = "INSERT INTO " + table;
   
       queryString += " (";
-      queryString += cols.toString();
+      queryString += cols.toString(); //[name, gender, age]
       queryString += ") ";
       queryString += "VALUES (";
       queryString += printQuestionMarks(vals.length);
@@ -83,19 +86,6 @@ function printQuestionMarks(num) {
       queryString += condition;
   
       console.log(queryString);
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
-  
-        callback(result);
-      });
-    },
-    delete: function(table, condition, callback) {
-      var queryString = "DELETE FROM " + table;
-      queryString += " WHERE ";
-      queryString += condition;
-  
       connection.query(queryString, function(err, result) {
         if (err) {
           throw err;

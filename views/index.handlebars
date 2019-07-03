@@ -36,9 +36,9 @@
 
 <div class="container" id="center">
     <h6>Add a burger you want to eat and Click the "Submit" button</h6>
-    <form class="create-form">
+    <form action ="/burger/create" method="POST" class="create-form">
         <div class="form-group">
-            <input type="text" id="ca" name="name">
+            <input type="text" id="burger_id" name="burger_name">
         </div>
         <button type="submit">Submit</button>
     </form>
