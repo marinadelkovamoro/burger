@@ -18,15 +18,19 @@ router.get("/", function (req, res) {
 });
 
 router.post("/burgers/create/", function (req, res) {
-  burger.create(["name"], [req.body.name], function (result) {
-    // Send back the ID of the new quote
+  burger.create(["burger_name"], [req.body.burger_name], function (result) {
+    console.log(result);
     res.redirect("/");
   });
 });
 
 router.put("/burger/:id", function (req, res) {
-  burger.update(req.params.id, function (data) {
+  var condition = "id = " + req.params.id;
+  burger.update({
+    devoured: 1
+  },condition, function (data) {
     console.log(data);
+    res.status(200).end();
   });
 });
 
@@ -35,3 +39,4 @@ router.put("/burger/:id", function (req, res) {
 
 // Export routes for server.js to use.
 module.exports = router;
+
